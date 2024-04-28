@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int        @id @default(autoincrement())
+  username    String     @unique
+  password    String
+  firstName   String
+  lastName    String
+  dateOfBirth String
+  email       String     @unique
+  phoneNumber String     @unique
+  // Other user specific fields
+  Employee    Employee[]
+  Role        Role?      @relation(fields: [roleName], references: [name])
+  roleName    String?
+}
+
+model Employee {
+  id             Int        @id @default(autoincrement())
+  user           User?      @relation(fields: [username], references: [username])
+  username       String     @unique
+  address        String
+  jobType        JobType
+  department     Department @relation(fields: [departmentName], references: [name])
+  departmentName String
+  role           Role       @relation(fields: [roleName], references: [name])
+  roleName       String
+}
+
+model Role {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  permissions Permission[]
+  User        User[]
+  Employee    Employee[]
+}
+
+model Department {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  employees Employee[] // One-to-many relationship: One department can have multiple employees
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+}
+
+enum Permission {
+  CREATE_USER
+  READ_USER
+  UPDATE_USER
+  DELETE_USER
+  CREATE_EMPLOYEE
+  READ_EMPLOYEE
+  UPDATE_EMPLOYEE
+  DELETE_EMPLOYEE
+  CREATE_ROLE
+  READ_ROLE
+  UPDATE_ROLE
+  DELETE_ROLE
+  READ_ALL_USERS //For admin users only
+  READ_ALL_EMPLOYEES // For HR manager or admin users only
+  READ_ALL_ROLES // For admin users only
+  READ_ALL_DEPARTMENTS // For HR manager or admin users only
+}
