@@ -21,7 +21,7 @@ git clone https://github.com/TusharDahiyaa/ems-api.git
 cd ems-api
 ```
 
-#Install Dependencies
+##Install Dependencies
 
 ```
 npm install
@@ -33,11 +33,11 @@ npm install
 yarn install
 ```
 
-#Set Up Environment Variables
+##Set Up Environment Variables
 
 Create a .env file in the root directory and copy the content from .env.example.
 
-#Run Migrations
+##Run Migrations
 
 Use Prisma to apply database migrations:
 
@@ -61,24 +61,24 @@ yarn dev
 
 This will start the server locally, and you can access the API at http://localhost:3000.
 
-#Project Structure
+##Project Structure
 The project structure is organized as follows:
 
-src/
-prisma/: Defines Prisma models representing database tables.
-routes/: Defines API routes using Express Router.
-middlewares/: Custom middleware functions.
-validations/: Zod and Permissions Schema
-index.ts: Entry point for the application.
-seed.ts: Entry point for the seeding prisma database
+- src/
+- prisma/: Defines Prisma models representing database tables.
+- routes/: Defines API routes using Express Router.
+- middlewares/: Custom middleware functions.
+- validations/: Zod and Permissions Schema
+- index.ts: Entry point for the application.
+- seed.ts: Entry point for the seeding prisma database
 
-#Available Scripts
+##Available Scripts
 npm run dev: Starts the server in development mode
 npm run build: Transpiles TypeScript files to JavaScript in the dist/ directory.
 npm start: Starts the server in production mode using the compiled JavaScript files.
 
-License
+##License
 This project is licensed under the MIT License.
 
-Acknowledgments
+##Acknowledgments
 Special thanks to the creators and maintainers of Node.js, Express.js, Prisma, and TypeScript for their amazing tools and libraries.
